@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import DOMPurify from 'dompurify';
+import  striptags from 'striptags';
 
 interface BlogCardProps {
     id: string,
@@ -14,7 +15,18 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
 
 
     const sanitizedTitle = DOMPurify.sanitize(title);
-    const sanitizedContent = DOMPurify.sanitize(content);
+   const Content = striptags(content)
+
+
+   const cleanText = (text: string): string => {
+    // Use striptags to remove HTML tags
+    let strippedText = striptags(text);
+  
+    // Replace &nbsp; with a normal space
+    strippedText = strippedText.replace(/&nbsp;/g, ' ');
+  
+    return strippedText;
+  };
 
 
     return <Link to={`/blog/${id}`}>
@@ -33,10 +45,10 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
                     {publishedDate}
                 </div>
             </div>
-            <div className="text-xl font-semibold pt-2" dangerouslySetInnerHTML={{ __html: sanitizedTitle }}></div>
-            <div className="text-md text-grey-800 font-extralight" dangerouslySetInnerHTML={{ __html: sanitizedContent.slice(0, 100) }}></div>
-                  <div className="text-slate-400 text-sm font-thin pt-4">
-                   {`${Math.ceil(content.length / 100)} minutes read`}
+            <div className="text-2xl font-bold pt-2" dangerouslySetInnerHTML={{ __html: sanitizedTitle }}></div>
+            <div className="text-base text-slate-700 font-normal">{cleanText(Content)}</div>
+                  <div className="text-grey-600 text-base font-thin pt-4">
+                   {`${Math.ceil(cleanText(content).length / 200)} minutes read`}
                    </div>
         </div>
     </Link>

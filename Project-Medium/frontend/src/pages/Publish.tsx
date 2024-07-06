@@ -27,8 +27,8 @@ export const Publish = () => {
             askBeforePasteHTML: false,
             askBeforePasteFromWord: false
         }),
-        []
-    );
+        [])
+    
 
 	
     return <div>

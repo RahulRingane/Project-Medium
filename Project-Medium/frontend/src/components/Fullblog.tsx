@@ -4,6 +4,7 @@ import { Avatar } from "./BlogCard";
 import DOMPurify from 'dompurify';
 import { Link } from 'react-router-dom'
 
+
 export const Fullblog = ({ blog }: { blog: Blog }) => {
     // Sanitize the HTML content from blog.title and blog.content
     const sanitizedTitle = DOMPurify.sanitize(blog.title);
@@ -19,7 +20,7 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
                         <div className="text-slate-500 pt-2">
                           posted by author
                         </div>
-                        <div className="pt-4 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+                        <div className="pt-4 whitespace-pre-wrap text-slate-700 text-lg" dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
                         <div>
                          {userid === blog.author.id ? <Link to={`/edit/${blog.id}`}>
                         <button type="button" className=" flex justify-center flex-col mt-4 py-1  px-2 me-2 text-xs font-medium text-slate-600 

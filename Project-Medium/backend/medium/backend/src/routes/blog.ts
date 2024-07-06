@@ -4,6 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 import { verify } from 'hono/jwt';
 
 
+
 export const blogRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string;
@@ -80,6 +81,8 @@ blogRouter.put('/edit/:id', async (c) => {
 
     const body = await c.req.json();
 
+   
+
     
          try{
         const post = await prisma.post.update({
@@ -89,7 +92,7 @@ blogRouter.put('/edit/:id', async (c) => {
             },
             data: {
                 title: body.title,
-                content: body.content,
+                content: body.content
             }
         })
     
