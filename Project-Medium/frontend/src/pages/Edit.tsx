@@ -6,7 +6,7 @@ import { Appbar } from '../components/Appbar';
 import { Spinner } from '../components/Spinner';
 import { useBlog } from '../hooks';
 import { BACKEND_URL } from '../config';
-import { Blog } from '../hooks'
+
 
 
 export const Edit = () => {

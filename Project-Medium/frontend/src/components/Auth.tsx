@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom" 
-import { SignupInput, SigninInput } from "@rahul897/medium-kommon"
+import { SignupInput } from "@rahul897/medium-kommon"
 import { BACKEND_URL } from "../config"
 import axios from "axios"
 
