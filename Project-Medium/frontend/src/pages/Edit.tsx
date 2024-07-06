@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import JoditEditor from 'jodit-react';
 import { Appbar } from '../components/Appbar';
-import { Spinner } from '../components/Spinner';
+import { BlogsSkeleton } from "../components/BlogsSkeleton"
 import { useBlog } from '../hooks';
 import { BACKEND_URL } from '../config';
 
@@ -39,8 +39,8 @@ export const Edit = () => {
                     }
                 }
             },
-            toolbarAdaptive: false,
-            placeholder: "Start Writing Content",
+        
+            placeholder: " start writing content...",
             askBeforePasteHTML: false,
             askBeforePasteFromWord: false
         }),
@@ -73,14 +73,19 @@ export const Edit = () => {
 
 
     if (loading || !blog) {
-        return (
-            <div className="h-screen flex flex-col justify-center">
-                <div className="flex justify-center">
-                    <Spinner />
-                </div>
+        return (<div>
+          <Appbar/>
+          <div className="flex justify-center">
+            <div>
+              <BlogsSkeleton />
+              <BlogsSkeleton />
+              <BlogsSkeleton />
+              <BlogsSkeleton />
             </div>
+          </div>
+        </div>
         );
-    }
+      }
 
     return (<div>
         <Appbar />
