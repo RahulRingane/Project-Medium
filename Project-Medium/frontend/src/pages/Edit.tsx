@@ -75,7 +75,7 @@ export const Edit = () => {
     if (loading || !blog) {
         return (<div>
           <Appbar/>
-          <div className="justify-center">
+          <div className="flex justify-center">
             <div>
               <BlogsSkeleton />
               <BlogsSkeleton />
