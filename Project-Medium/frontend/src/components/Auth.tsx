@@ -25,11 +25,11 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
     }
 }
-    return <div className="w-max-lg h-screen flex justify-center items-center flex-col">
-        <div className="flex-justify-center max-w-md">
+    return <div className=" w-max-xl md:w-max-lg justify-center items-center h-screen flex justify-center flex-col">
+        <div className="flex-justify-center max-w-xl">
             <div>
-                <div className="px-10">
-                    <div className="text-3xl font-extrabold px-10">
+                <div className="px-12">
+                    <div className="text-3xl font-black ">
                         Create an account
                     </div>
                     <div className="text-slate-500 flex justify-center">
@@ -62,7 +62,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                         password : e.target.value
                     })
                 }}></LabelledInput>
-                <button onClick = { sendRequest } type="button" className="mt-8 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+                <button onClick = { sendRequest } type="button" className="mt-8 w-full text-white bg-black hover:bg-gray-900 focus:outline-none 
          focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 
           dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup" ? "Sign up" : "Sign in"}</button>
             </div>

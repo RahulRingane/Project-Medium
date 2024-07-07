@@ -30,7 +30,7 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
 
 
     return <Link to={`/blog/${id}`}>
-        <div className=" p-4 border-b border-slate-200 pb-4 w-screen cursor-pointer">
+        <div className=" p-2 md:p-4 border-b border-slate-200 pb-4 w-sm md:w-md cursor-pointer">
             <div className="flex">
                 <div className="">
                     <Avatar name={authorName} size={"small"} />
@@ -49,7 +49,7 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
             <div className="text-base text-slate-700 font-normal">{cleanText(Content)}</div>
                   <div className="text-grey-600 text-base font-thin pt-4">
                    {`${Math.ceil(cleanText(content).length / 200)} minutes read`}
-                   </div>
+                   </div> 
         </div>
     </Link>
 }
@@ -62,8 +62,8 @@ export function Circle() {
 
 export function Avatar({ name, size = "small" }: { name: string, size?: "small" | "big" }) {
     return <div className={`relative inline-flex items-center justify-center overflow-hidden 
-           bg-gray-100 rounded-full dark:bg-gray-600 bg-slate-300 ${size === "small" ? "w-6 h-6" : "w-10 h-10"}`}>
-        <span className={`text-gray-600 dark:text-gray-300 ${size === "small" ? "text-xs" : "text-lg"}`}>{name[0]}</span>
+           bg-greay-100 rounded-full bg-purple-600 ${size === "small" ? "w-6 h-6" : "w-10 h-10"}`}>
+        <span className={`text-white ${size === "small" ? "text-xs" : "text-lg"}`}>{name[0]}</span>
     </div>
 
 

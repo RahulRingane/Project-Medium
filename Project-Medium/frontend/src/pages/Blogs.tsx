@@ -9,10 +9,10 @@ export const Blogs = () => {
   const { loading, blogs } = useBlogs(); // Update to reflect the correct variable name
 
   if (loading) {
-    return (<div>
+    return (<div className = "">
       <Appbar/>
-      <div className="flex justify-center">
-        <div>
+      <div className=" flex justify-center">
+        <div className = "">
           <BlogsSkeleton />
           <BlogsSkeleton />
           <BlogsSkeleton />
@@ -24,11 +24,11 @@ export const Blogs = () => {
   }
 
   return (
-    <div>
+    <div className="w-sm md:max-w-full">
       <div>
         <Appbar />
       </div>
-      <div className="flex justify-center">
+      <div className="justify-center">
         <div className="">
           {blogs.map((blog) => ( // Update to reflect the correct variable name
             <BlogCard

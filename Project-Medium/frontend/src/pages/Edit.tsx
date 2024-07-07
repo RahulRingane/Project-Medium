@@ -75,7 +75,7 @@ export const Edit = () => {
     if (loading || !blog) {
         return (<div>
           <Appbar/>
-          <div className="flex justify-center">
+          <div className="justify-center">
             <div>
               <BlogsSkeleton />
               <BlogsSkeleton />
@@ -89,16 +89,18 @@ export const Edit = () => {
 
     return (<div>
         <Appbar />
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center ml-2 md:ml-0 md:mr-0 w-96 md:w-full">
 
-            <div className="max-w-screen-lg w-full">
-                <input className="mb-6 mt-2 text-grey-900 w-full py-2 border border-gray-300 rounded"
+            <div className="max-w-screen-lg w-11/12 md:w-full">
+                <p className = " text-slate-400 font-light flex justify-center flex-col">Title (click on the title box for edit)</p>
+                <input className="mb-6 text-grey-900 w-full py-2 px-4 md:px-0 border border-gray-200 rounded"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter the title"
                 />
-                <JoditEditor className="mt-4"
+                <p className = "text-slate-400 font-light  flex justify-center flex-col">Content (click on the content box for edit)</p>
+                <JoditEditor className=""
                     ref={editor}
                     value={content}
                     config={Config}

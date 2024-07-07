@@ -11,12 +11,14 @@ export const AuthorsBlogs = () => {
  
 
   if(loading || !AuthorsBlogs){
-    return <div className = "h-screen flex flex-col justify-center">
-        <div className = "flex justify-center">
+    return <div className = "h-screen">
+        <div className = " flex justify-center">
+          <div className = "flex flex-col justify-center">
         <BlogsSkeleton/>
         <BlogsSkeleton/>
         <BlogsSkeleton/>
         <BlogsSkeleton/>
+        </div>
         </div>
     </div>
 }
@@ -27,7 +29,7 @@ return (
     <div>
       <Appbar />
     </div>
-    <div className="flex justify-center">
+    <div className="justify-center">
       <div className="">
         {AuthorsBlogs.map((blog) => ( // Update to reflect the correct variable name
           <BlogCard
