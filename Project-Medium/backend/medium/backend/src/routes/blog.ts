@@ -58,7 +58,7 @@ blogRouter.post('/', async (c) => {
         });
 
         return c.json({
-            id: post.id
+             post
         });
     } catch (error) {
         console.error("Error creating post:", error);
@@ -97,7 +97,8 @@ blogRouter.put('/edit/:id', async (c) => {
         })
     
 
-        return c.json({ id: post.id })
+        return c.json({ post
+         })
     } catch(e){
       c.status(411)
         return c.json({

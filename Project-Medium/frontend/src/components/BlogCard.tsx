@@ -15,18 +15,25 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
 
 
     const sanitizedTitle = DOMPurify.sanitize(title);
-   const Content = striptags(content)
+  // const Content = striptags(content)
 
-
-   const cleanText = (text: string): string => {
+  const cleanText = (text: string): string => {
     // Use striptags to remove HTML tags
     let strippedText = striptags(text);
-  
     // Replace &nbsp; with a normal space
     strippedText = strippedText.replace(/&nbsp;/g, ' ');
-  
     return strippedText;
-  };
+};
+
+const truncateText = (text: string, limit: number): string => {
+    if (text.length <= limit) return text;
+    const truncated = text.substring(0, limit);
+    return truncated.substring(0, truncated.lastIndexOf(' ')) + '...';
+};
+
+const cleanedContent = cleanText(content);
+const contentSnippet = truncateText(cleanedContent, 200);
+console.log('contentSnippet', contentSnippet)
 
 
     return <Link to={`/blog/${id}`}>
@@ -46,7 +53,7 @@ export const BlogCard = ({ authorName, title, content, publishedDate, id }: Blog
                 </div>
             </div>
             <div className="text-2xl font-bold pt-2" dangerouslySetInnerHTML={{ __html: sanitizedTitle }}></div>
-            <div className="text-base text-slate-700 font-normal">{cleanText(Content)}</div>
+            <div className="text-base text-slate-700 font-normal">{contentSnippet}</div>
                   <div className="text-grey-600 text-base font-thin pt-4">
                    {`${Math.ceil(cleanText(content).length / 200)} minutes read`}
                    </div> 

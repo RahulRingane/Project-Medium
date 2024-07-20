@@ -23,7 +23,7 @@ export const SearchBar: React.FC = () => {
             onChange={(e) => setName(e.target.value)}
             id="search-dropdown"
             className="block p-1.5 md:p-2.5 w-full  text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-r-lg rounded-l-lg focus:outline-none"
-            placeholder="Search Author's Blogs By Name..."
+            placeholder="Search Author Blogs By Name..."
             required
         />
         <button

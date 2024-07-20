@@ -98,6 +98,7 @@ userRouter.post('/signin', async (c) => {
 
   return c.json({ 
     jwt,
+    name: user.name,
     userid: user.id
    });
 });

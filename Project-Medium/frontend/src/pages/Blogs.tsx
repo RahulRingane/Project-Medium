@@ -1,25 +1,59 @@
 // Blogs.js
-
 import { BlogCard } from '../components/BlogCard';
 import { Appbar } from '../components/Appbar';
-import { useBlogs } from '../hooks';
-import { BlogsSkeleton } from "../components/BlogsSkeleton"
+import { BlogsSkeleton } from "../components/BlogsSkeleton";
+import { Blog, blogsStateAtom } from "../atom";
+import { useRecoilValueLoadable } from 'recoil';
+import { useEffect, useState } from "react";
 
 export const Blogs = () => {
-  const { loading, blogs } = useBlogs(); // Update to reflect the correct variable name
+  const blogsLoadable = useRecoilValueLoadable(blogsStateAtom);
+ // const  [blogs,setBlogs] = useRecoilState(blogsStateAtom);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    switch (blogsLoadable.state) {
+      case 'loading':
+        setLoading(true);
+        break;
+      case 'hasValue':
+        setLoading(false);
+       // setBlogs(Array.isArray(blogsLoadable.contents) ? blogsLoadable.contents : []);
+        //setBlogs(blogs)
+        break;
+      case 'hasError':
+        setLoading(false);
+        setError("Failed to load blogs");
+        console.error(blogsLoadable.contents);
+        break;
+    }
+  }, [blogsLoadable]);
 
   if (loading) {
-    return (<div className = "">
-      <Appbar/>
-      <div className=" flex justify-center">
-        <div className = "">
-          <BlogsSkeleton />
-          <BlogsSkeleton />
-          <BlogsSkeleton />
-          <BlogsSkeleton />
+    return (
+      <div>
+        <Appbar />
+        <div className="flex justify-center">
+          <div>
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+            <BlogsSkeleton />
+          </div>
         </div>
       </div>
-    </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Appbar />
+        <div className="flex justify-center">
+          <div className="text-red-500">{error}</div>
+        </div>
+      </div>
     );
   }
 
@@ -29,14 +63,15 @@ export const Blogs = () => {
         <Appbar />
       </div>
       <div className="justify-center">
-        <div className="">
-          {blogs.map((blog) => ( // Update to reflect the correct variable name
+        <div>
+          {blogsLoadable.contents.map((blog: Blog) => (
             <BlogCard
+              key={blog.id}
               id={blog.id}
-              authorName={blog.author.name || "Anonymous"}
+              authorName={blog.author?.name || "Anonymous"}
               title={blog.title}
               content={blog.content}
-              publishedDate={"july 2024"}
+              publishedDate={"July 2024"}
             />
           ))}
         </div>
@@ -44,5 +79,7 @@ export const Blogs = () => {
     </div>
   );
 };
+
+
 
 
