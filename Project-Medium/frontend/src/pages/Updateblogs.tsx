@@ -34,7 +34,7 @@ export const Updateblogs = () => {
                 const fetchedBlogs: Blog[] = response.data.posts; // Adjust based on actual API response structure
 
                 // Update authBlogs state with fetched data
-                console.log("abcd", fetchedBlogs)
+               
                 setAuthblogs(fetchedBlogs);
             } catch (error) {
                 console.error('Error fetching or updating author blogs:', error);

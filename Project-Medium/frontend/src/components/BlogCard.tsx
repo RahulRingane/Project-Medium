@@ -33,7 +33,7 @@ const truncateText = (text: string, limit: number): string => {
 
 const cleanedContent = cleanText(content);
 const contentSnippet = truncateText(cleanedContent, 200);
-console.log('contentSnippet', contentSnippet)
+
 
 
     return <Link to={`/blog/${id}`}>
