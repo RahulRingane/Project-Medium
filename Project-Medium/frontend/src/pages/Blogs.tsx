@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 export const Blogs = () => {
   const blogsLoadable = useRecoilValueLoadable(blogsStateAtom);
- // const  [blogs,setBlogs] = useRecoilState(blogsStateAtom);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,8 +18,6 @@ export const Blogs = () => {
         break;
       case 'hasValue':
         setLoading(false);
-       // setBlogs(Array.isArray(blogsLoadable.contents) ? blogsLoadable.contents : []);
-        //setBlogs(blogs)
         break;
       case 'hasError':
         setLoading(false);

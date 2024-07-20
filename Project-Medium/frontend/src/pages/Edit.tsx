@@ -19,7 +19,7 @@ export const Edit = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState(blog?.title || '');
     const [content, setContent] = useState(blog?.content || '');
-    const [authorId] = useState(blog?.author?.id || '');
+    const [authorId] = useState(blog.author?.id || '');
    const userid = localStorage.getItem('userid')
 
     const Config : any = useMemo(
@@ -57,7 +57,8 @@ export const Edit = () => {
             console.error("Error while updating the blog:", error);
         }
     };
-     if(userid !== blog.author?.id){
+     if(userid !== authorId){
+        console.log(userid, blog.author?.id )
         return <div>
             Author can only update the blog.
         </div>

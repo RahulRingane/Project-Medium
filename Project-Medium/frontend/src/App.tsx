@@ -7,6 +7,9 @@ import { Publish } from './pages/Publish'
 import { AuthorsBlogs} from './pages/AuthorsBlogs'
 import { Edit } from './pages/Edit'
 import { Updateblogs } from './pages/Updateblogs'
+
+
+
 function App() {
 
   return (
@@ -21,6 +24,7 @@ function App() {
           <Route path = "/author/:name" element={<AuthorsBlogs/>}/>
           <Route path ="/edit/:id" element={<Edit/>}/>
           <Route path ="/updateblogs/:id" element={<Updateblogs />}/>
+        
         </Routes>
       </BrowserRouter>
     </>

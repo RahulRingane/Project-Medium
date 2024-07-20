@@ -13,9 +13,9 @@ import axios from 'axios'
 const name = localStorage.getItem('username')
 export const Updateblogs = () => {
     const { id } = useParams<{ id: string }>();
-    const [blogs, setBlogs] = useRecoilState(blogsStateAtom);
+    const [Blogs, setBlogs] = useRecoilState(blogsStateAtom);
     const blog = useRecoilValue(blogStateAtom(id || ""));
-    const [authblogs, setAuthblogs] = useRecoilState(authorsBlogsStateAtom(name || ""))
+    const [authblogs, setAuthblogs] = useRecoilState<Blog []>(authorsBlogsStateAtom(name || ""))
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -90,53 +90,3 @@ export const Updateblogs = () => {
 
 
 
-
-/*import { BlogsSkeleton } from "../components/BlogsSkeleton";
-import { Appbar } from "../components/Appbar";
-import { useParams, useNavigate } from "react-router-dom";
-import { blogsStateAtom, blogStateAtom } from "../atom";
-import { useRecoilState, useRecoilValue } from 'recoil'; 
-import { useEffect } from 'react'
-
- export const Updateblogs = () => {
- const { id } = useParams<{ id: string }>();
- const  [blogs,setBlogs] = useRecoilState(blogsStateAtom);
- const Blog = useRecoilValue(blogStateAtom(id || ""))
- const navigate = useNavigate(); 
-
- useEffect(() => {
-     setBlogs((blogs) => [Blog, ...blogs])
-     navigate(`/blog/${id}`);
-  }, []);
-
- 
-   
- return (
-    <div>
-      <Appbar />
-      <div className="flex justify-center">
-        <div>
-          <BlogsSkeleton />
-          <BlogsSkeleton />
-          <BlogsSkeleton />
-          <BlogsSkeleton />
-        </div>
-      </div>
-    </div>
-  );
-}           
-    if (blog) {
-      setBlogs((blogs) => {
-        const existingBlogIndex = blogs.findIndex(existingBlog => existingBlog.id === blog.id);
-        if (existingBlogIndex !== -1) {
-          // Update the existing blog
-          const updatedBlogs = [...blogs];
-          updatedBlogs[existingBlogIndex] = blog;
-          return updatedBlogs;
-        } else {
-          // Add the new blog
-          return [blog, ...blogs];
-          
-        }
-      });
-*/

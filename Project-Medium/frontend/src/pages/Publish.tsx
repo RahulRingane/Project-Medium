@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import JoditEditor from "jodit-react"
 import { useRef } from 'react'
-import { useSetRecoilState } from "recoil"
-import { blogsStateAtom} from "../atom"
 
 
 declare global {
@@ -21,8 +19,6 @@ export const Publish = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-   // const setBlogs = useSetRecoilState(blogsStateAtom);
-  //  const [authBlogs, setAuthBlogs] = useRecoilState(authorsBlogsStateAtom(name || ""))
     const Config: any = useMemo(
         () => ({
 
@@ -63,7 +59,7 @@ export const Publish = () => {
                         }
                     });
                     var newblog = response.data.post
-                    //setBlogs((prevBlogs) => [newblog, ...prevBlogs]);
+                    
 
                  
                     navigate(`/Updateblogs/${newblog.id}`)

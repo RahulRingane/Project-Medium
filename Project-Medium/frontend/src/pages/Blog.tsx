@@ -1,4 +1,4 @@
-// import { useFetchBlog } from "../hooks"
+
 
 import { useParams } from "react-router-dom";
 import { Fullblog } from "../components/Fullblog";
@@ -7,8 +7,7 @@ import { Appbar } from "../components/Appbar";
 import { useRecoilValueLoadable } from "recoil";
 import { useState, useEffect } from "react";
 import { blogStateAtom } from "../atom";
-//import { Link } from 'react-router-dom'
-//const userid = localStorage.getItem('userid')
+
 
 
 export const Blog = () => {

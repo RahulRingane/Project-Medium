@@ -30,12 +30,8 @@ export interface Blog {
               Authorization: localStorage.getItem('token') ?? '',
             },
           });
-          // Ensure response.data.posts is correctly typed as Blog[]
-          return response.data.posts  // Handle potential empty response
-        /* catch (error) {
-          console.error('Error fetching blogs:', error);
-          return []; // Return empty array in case of error
-        }*/
+         
+          return response.data.posts  
       },
     }),
   });
@@ -71,72 +67,3 @@ export const blogStateAtom = atomFamily<Blog, string>({
     }),
   });
   
-
-
-
-
-/*  export const authorsBlogsState = atom<Blog[]>({
-    key: 'authorsBlogsState',
-    default: undefined,
-  });
-  
-
-export const blogsLoadingState = atom<boolean>({
-  key: 'blogsLoadingState',
-  default: false,
-});
-
-
-export const editBlogState = atom<boolean>({
-  key: 'editBlogState',
-  default: false,
-});
-
-
-
-export const authorsBlogsLoadingState = atom<boolean>({
-  key: 'authorsBlogsLoadingState',
-  default: false,
-});
-
-
-
-export const fetchBlogsSelector = selector<Blog[]>({
-  key: 'fetchBlogsSelector',
-  get: async () => {
-    const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
-      headers: {
-        Authorization: localStorage.getItem('token') ?? '',
-      },
-    });
-    return response.data.posts;
-  },
-});
-
-export const fetchBlogSelector = selectorFamily<Blog | undefined, string>({
-  key: 'fetchBlogSelector',
-  get: (id: string) => async () => {
-
-    if (!id) return undefined;
-    const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem('token') ?? '',
-      },
-    });
-    return response.data.post;
-  },
- 
-});
-
-export const fetchAuthorsBlogsSelector = selectorFamily<Blog[], string>({
-  key: 'fetchAuthorsBlogsSelector',
-  get: (authorName: string) => async () => {
-    if (!authorName) return [];
-    const response = await axios.get(`${BACKEND_URL}/api/v1/blog/author/${authorName}`, {
-      headers: {
-        Authorization: localStorage.getItem('token') ?? '',
-      },
-    });
-    return response.data.posts;
-  },
-});*/
