@@ -3,7 +3,7 @@ import { BlogsSkeleton } from "../components/BlogsSkeleton";
 import { Appbar } from "../components/Appbar";
 import { useParams, useNavigate } from "react-router-dom";
 import { blogsStateAtom, blogStateAtom, authorsBlogsStateAtom, Blog } from "../atom";
-import { useRecoilState, useRecoilValue, } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { BACKEND_URL } from '../config.ts'
 import axios from 'axios'
@@ -13,9 +13,9 @@ import axios from 'axios'
 const name = localStorage.getItem('username')
 export const Updateblogs = () => {
     const { id } = useParams<{ id: string }>();
-    const [Blogs, setBlogs] = useRecoilState(blogsStateAtom);
+    const  setBlogs = useSetRecoilState(blogsStateAtom);
     const blog = useRecoilValue(blogStateAtom(id || ""));
-    const [authblogs, setAuthblogs] = useRecoilState<Blog []>(authorsBlogsStateAtom(name || ""))
+    const  setAuthblogs = useSetRecoilState<Blog []>(authorsBlogsStateAtom(name || ""))
     const navigate = useNavigate();
 
     useEffect(() => {
