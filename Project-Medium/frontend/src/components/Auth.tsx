@@ -11,7 +11,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         email: "",
         password: ""
     })
-
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorInput, setErrorInput] = useState<string | null>(null);
     async function sendRequest () {
         try { const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,postInputs)
               const jwt = response.data.jwt
@@ -21,8 +22,15 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
               localStorage.setItem("token", jwt)
               localStorage.setItem("userid", userId)
               navigate("/blogs")
-    } catch (e) {
-
+    }  catch (e: any) {
+        if (e.response && e.response.status === 500) { // Assuming 409 is the status code for email conflict
+        
+            setErrorMessage("Email is already taken, please use another.");
+        } if (e.response && e.response.status === 400 && type === "signup" ) {
+            setErrorInput("Password must be at least 6 characters long.");
+        }  if (e.response && e.response.status === 403 || 400 && type === "signin" ) {
+            setErrorInput("Invalid email or password. Please try again.");
+        }
     }
 }
     return <div className=" w-max-xl md:w-max-lg justify-center items-center h-screen flex justify-center flex-col">
@@ -42,26 +50,35 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                 </div>
             </div>
             <div className="pt-4">
-                { type === "signup" ? <LabelledInput label="name" placeholder="Rahul..." onChange={(e) => {
+                { type === "signup" ? <LabelledInput label="name" placeholder="Name...(e.g., Jack Sparrow.)" onChange={(e) => {
                     setPostInputs({
                         ...postInputs,
                         name: e.target.value
                     })
                 }} ></LabelledInput> : null }
 
-                <LabelledInput label="email" placeholder="rahul@gmail.com" onChange={(e) => {
+                <LabelledInput label="email" placeholder={type === "signup" ? "jack@gmail.com" : "Email..."} onChange={(e) => {
                     setPostInputs({
                         ...postInputs,
                         email : e.target.value
                     })
+                    setErrorMessage(null)
                 }}></LabelledInput>
+                 { errorMessage && (
+                        <div className="text-red-500 pt-2">{errorMessage}</div>
+                    )}  
 
-                <LabelledInput label="password" type={"password"} placeholder="145672" onChange={(e) => {
+                <LabelledInput label="password" type={"password"} placeholder={type === "signup" ? "Create a password (e.g., 123456)." : "Password..."} onChange={(e) => {
                     setPostInputs({
                         ...postInputs,
                         password : e.target.value
                     })
+                    setErrorInput(null)
                 }}></LabelledInput>
+                 {errorInput && (
+                        <div className="text-red-500 pt-2">{errorInput}</div>
+                    )}
+                
                 <button onClick = { sendRequest } type="button" className="mt-8 w-full text-white bg-black hover:bg-gray-900 focus:outline-none 
          focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 
           dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup" ? "Sign up" : "Sign in"}</button>

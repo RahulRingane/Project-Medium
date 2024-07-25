@@ -2,12 +2,13 @@
 import { BlogCard } from '../components/BlogCard';
 import { Appbar } from '../components/Appbar';
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
-import { Blog, blogsStateAtom } from "../atom";
+import { Blog, blogsStateWithFetchSelector } from "../atom";
 import { useRecoilValueLoadable } from 'recoil';
 import { useEffect, useState } from "react";
 
 export const Blogs = () => {
-  const blogsLoadable = useRecoilValueLoadable(blogsStateAtom);
+  const blogsLoadable = useRecoilValueLoadable(blogsStateWithFetchSelector);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

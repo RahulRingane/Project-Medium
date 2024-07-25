@@ -5,15 +5,13 @@ import { Avatar } from "./BlogCard";
 import DOMPurify from 'dompurify';
 import { Link } from 'react-router-dom'
 
-const userid = localStorage.getItem("userid")
+
 
 export const Fullblog = ({ blog }: { blog: Blog }) => {
     // Sanitize the HTML content from blog.title and blog.content
     const sanitizedTitle = DOMPurify.sanitize(blog.title);
     const sanitizedContent = DOMPurify.sanitize(blog.content);
-    // const userid = localStorage.getItem("userid")
-    console.log("bodata", blog)
-    console.log("userid", userid)
+   
 
     if (!blog) {
         return <div>Error: Blog data is not available.</div>;
@@ -47,7 +45,7 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
                         </div>
                         <div className="flex w-full">
                             <div className="pr-4 flex flex-col justify-center">
-                                <Avatar size="big" name={blog.author?.name || "Anonymous"} />
+                                <Avatar size="big" name={ blog.author?.name || "Anonymous"} />
                             </div>
                             <div>
                                 <div className="text-xl font-extrabold">
