@@ -2,12 +2,14 @@
 import { BlogCard } from '../components/BlogCard';
 import { Appbar } from '../components/Appbar';
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
-import { Blog, blogsStateWithFetchSelector } from "../atom";
+import { Blog, blogsStateAtom } from "../atom";
 import { useRecoilValueLoadable } from 'recoil';
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const Blogs = () => {
-  const blogsLoadable = useRecoilValueLoadable(blogsStateWithFetchSelector);
+  const { space } = useParams<{ space : string }>();
+  const blogsLoadable = useRecoilValueLoadable(blogsStateAtom(space || ""));
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -1,6 +1,7 @@
-import { atomFamily, atom, selector,selectorFamily } from 'recoil';
+import { atomFamily,selectorFamily } from 'recoil';
 import axios from 'axios';
 import { BACKEND_URL } from './config';
+
 
 
 export interface Blog {
@@ -13,11 +14,60 @@ export interface Blog {
     };
   }
 
-  // Atom family to store each blog
+  const space : string = " "
+  console.log(space)
+
+
+export const blogStateAtom = atomFamily<Blog, string>({
+    key: 'blogState',
+    default: selectorFamily({
+      key: "bselectorFamily",
+      get: (id: string) => async () => {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+          headers: {
+            Authorization: localStorage.getItem('token') ?? '',
+          },
+        });
+        return response.data.post
+      },
+    }),
+  });
+
+
+  export const blogsStateAtom = atomFamily<Blog[], string>({
+    key: 'blogsState',
+    default: selectorFamily({
+      key: 'AuthorBlogsStateSelector',
+      get: (space) => async () => {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk${space}`, {
+          headers: {
+            Authorization: localStorage.getItem('token') ?? '',
+          },
+        });
+        return response.data.posts; // Adjust based on the actual structure of the response
+      },
+    }),
+  });
+  
 
 
 
-
+  export const authorsBlogsStateAtom = atomFamily<Blog[], string>({
+    key: 'blogsState',
+    default: selectorFamily({
+      key: 'AuthorBlogsStateSelector',
+      get: (authorName) => async () => {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/author/${authorName}`, {
+          headers: {
+            Authorization: localStorage.getItem('token') ?? '',
+          },
+        });
+        return response.data.posts; // Adjust based on the actual structure of the response
+      },
+    }),
+  });
+  
+/*
 export const blogsStateSelector = selector({
   key: 'blogsStateSelector',
   get: async ({  }) => {
@@ -53,36 +103,4 @@ export const blogsStateWithFetchSelector = selector({
   set: ({ set }, newBlogs) => {
     set(blogsStateAtom, newBlogs);
   },
-});
-
-export const blogStateAtom = atomFamily<Blog, string>({
-    key: 'blogState',
-    default: selectorFamily({
-      key: "bselectorFamily",
-      get: (id: string) => async () => {
-        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
-          headers: {
-            Authorization: localStorage.getItem('token') ?? '',
-          },
-        });
-        return response.data.post
-      },
-    }),
-  });
-
-
-  export const authorsBlogsStateAtom = atomFamily<Blog[], string>({
-    key: 'blogsState',
-    default: selectorFamily({
-      key: 'AuthorBlogsStateSelector',
-      get: (authorName) => async () => {
-        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/author/${authorName}`, {
-          headers: {
-            Authorization: localStorage.getItem('token') ?? '',
-          },
-        });
-        return response.data.posts; // Adjust based on the actual structure of the response
-      },
-    }),
-  });
-  
+});*/

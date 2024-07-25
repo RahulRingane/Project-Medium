@@ -12,7 +12,8 @@ const name = localStorage.getItem('username');
 
 export const Updateblogs = () => {
     const { id } = useParams<{ id: string }>();
-    const setBlogs = useSetRecoilState(blogsStateAtom);
+    const { space } = useParams<{ space : string }>();
+    const setBlogs = useSetRecoilState(blogsStateAtom(space || ""));
     const blog = useRecoilValue(blogStateAtom(id || ""));
     const setAuthblogs = useSetRecoilState<Blog[]>(authorsBlogsStateAtom(name || ""));
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export const Updateblogs = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+                const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk${space}`, {
                     headers: {
                         Authorization: localStorage.getItem('token') ?? '',
                     },
