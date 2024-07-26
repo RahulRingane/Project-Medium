@@ -1,4 +1,4 @@
-import { atomFamily,selectorFamily } from 'recoil';
+import { atomFamily,selectorFamily, atom, selector } from 'recoil';
 import axios from 'axios';
 import { BACKEND_URL } from './config';
 
@@ -34,26 +34,8 @@ export const blogStateAtom = atomFamily<Blog, string>({
   });
 
 
-  export const blogsStateAtom = atomFamily<Blog[], string>({
-    key: 'blogsState',
-    default: selectorFamily({
-      key: 'AuthorBlogsStateSelector',
-      get: (space) => async () => {
-        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk${space}`, {
-          headers: {
-            Authorization: localStorage.getItem('token') ?? '',
-          },
-        });
-        return response.data.posts; // Adjust based on the actual structure of the response
-      },
-    }),
-  });
-  
-
-
-
   export const authorsBlogsStateAtom = atomFamily<Blog[], string>({
-    key: 'blogsState',
+    key: 'authblogsState',
     default: selectorFamily({
       key: 'AuthorBlogsStateSelector',
       get: (authorName) => async () => {
@@ -66,31 +48,59 @@ export const blogStateAtom = atomFamily<Blog, string>({
       },
     }),
   });
+ 
+  export const blogsStateAtom = atom<Blog[]>({
+    key: 'blogsState',
+    default: [], // Default to an empty array
+  });
   
-/*
+  
+  export const blogsStateSelector = selector<Blog[]>({
+    key: 'BlogsStateSelector',
+    get: async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+          headers: {
+            Authorization: localStorage.getItem('token') ?? '',
+          },
+        });
+        return response.data.posts; // Adjust based on the actual structure of the response
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+        return []; // Return an empty array in case of an error
+      }
+    },
+  });
+  
+  
+
+
+
+
+  
+ /* export const blogsStateAtom = atom<Blog[]>({
+    key: 'blogsStateAtom',
+    default: [],
+  });
+
 export const blogsStateSelector = selector({
   key: 'blogsStateSelector',
   get: async ({  }) => {
-    try {
+    
       const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
         headers: {
           Authorization: localStorage.getItem('token') ?? '',
         },
       });
       return response.data.posts;
-    } catch (error) {
-      console.error('Error fetching blogs:', error);
-      return [];
-    }
   },
+  set: ({ set } , response.data.posts) => {
+    set(blogsStateAtom, response.data.posts);
+  }
 });
 
-export const blogsStateAtom = atom<Blog[]>({
-  key: 'blogsStateAtom',
-  default: [],
-});
 
-export const blogsStateWithFetchSelector = selector({
+/*export const blogsStateWithFetchSelector = selector({
   key: 'blogsStateWithFetchSelector',
   get: ({ get }) => {
     const blogs = get(blogsStateAtom);

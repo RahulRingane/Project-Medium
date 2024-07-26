@@ -2,14 +2,14 @@
 import { BlogCard } from '../components/BlogCard';
 import { Appbar } from '../components/Appbar';
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
-import { Blog, blogsStateAtom } from "../atom";
-import { useRecoilValueLoadable } from 'recoil';
+import { Blog, blogsStateSelector } from "../atom";
+import {useRecoilValueLoadable } from 'recoil';
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 
 export const Blogs = () => {
-  const { space } = useParams<{ space : string }>();
-  const blogsLoadable = useRecoilValueLoadable(blogsStateAtom(space || ""));
+  //const { space } = useParams<{ space : string }>();
+  const blogsLoadable = useRecoilValueLoadable(blogsStateSelector);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,7 +79,6 @@ export const Blogs = () => {
     </div>
   );
 };
-
 
 
 
