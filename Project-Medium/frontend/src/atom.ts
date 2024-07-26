@@ -4,6 +4,7 @@ import { BACKEND_URL } from './config';
 
 
 
+
 export interface Blog {
     content: string;
     title: string;
@@ -54,23 +55,59 @@ export const blogStateAtom = atomFamily<Blog, string>({
     default: [], // Default to an empty array
   });
   
+
+  export const blogsStateSelector = selector({
+    key: 'blogsStateSelector',
+    get: async ({ get }) => {
+        get(blogsStateAtom)
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+          headers: {
+            Authorization: localStorage.getItem('token') ?? '',
+          },
+        });
+        return response.data.posts;
+       const newblogs = response.data.posts
+       newblogs
+    }, set: ({ set }, newblogs) => {
+      set(blogsStateAtom, newblogs);
+    }
+   
+  });
+
+  /*export const blogsStateWithFetchSelector = selector({
+    key: 'blogsStateWithFetchSelector',
+    get: ({ get }) => {
+      const blogs = get(blogsStateAtom);
+      if (blogs.length === 0) {
+        const fetchedBlogs = get(blogsStateSelector);
+        return fetchedBlogs;
+      }
+      return blogs;
+    },
+    set: ({ set }, newBlogs) => {
+      set(blogsStateAtom, newBlogs);
+    },
+  })
+
   
-  export const blogsStateSelector = selector<Blog[]>({
+
+  /*export const blogsStateSelector = selector<Blog[]>({
     key: 'BlogsStateSelector',
     get: async () => {
-      try {
+      
         const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
           headers: {
             Authorization: localStorage.getItem('token') ?? '',
           },
         });
         return response.data.posts; // Adjust based on the actual structure of the response
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-        return []; // Return an empty array in case of an error
-      }
-    },
-  });
+       //catch (error) {
+        //console.error('Error fetching blogs:', error);
+       // return []; // Return an empty array in case of an error
+     // }
+    }
+    
+  });*/
   
   
 

@@ -1,5 +1,3 @@
-
-
 import { useParams } from "react-router-dom";
 import { Fullblog } from "../components/Fullblog";
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
