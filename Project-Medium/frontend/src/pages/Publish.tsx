@@ -24,7 +24,27 @@ export const Publish = () => {
 
             placeholder: "Start Writing Cotent",
             askBeforePasteHTML: false,
-            askBeforePasteFromWord: false
+            askBeforePasteFromWord: false,
+            buttons: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "eraser",
+                "ul",
+                "ol",
+                "copyformat",
+                "paragraph",
+                "superscript",
+                "subscript",
+                "cut",
+                "copy",
+                "paste",
+                "undo",
+                "redo",
+                "table",
+                "lineHeight",
+              ]
         }),
         [])
 
