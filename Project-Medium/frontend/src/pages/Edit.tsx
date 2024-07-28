@@ -121,7 +121,6 @@ export const Edit = () => {
                     <button
                         type="button"
                         onClick={handleSave}
-                        //className="rounded text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-base px-5 py-2 text-center me-2 ml-2 mt-2 mb-2"
                         className=" flex justify-center flex-col mt-4 py-1.5  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 "
                     >
                         Save
