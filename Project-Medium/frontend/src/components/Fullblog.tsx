@@ -41,7 +41,7 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
                     
                             <span className="sr-only">Info</span>
                             <div>
-                                <span className="font-medium">Note : </span> Only the author can edit the blog.
+                                <span className="font-medium bg-grey-100">Note : </span> Only the author can edit the blog.
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ export const Signup = () => {
                     
                     <span className="sr-only">Info</span>
                     <div>
-                        <span className="font-medium">Note : </span> For signup, please use a dummy email with a valid format, 
+                        <span className="font-medium px-o.5 bg-grey-100">Note : </span> For signup, please use a dummy email with a valid format, 
                         such as thor@gmail.com, and ensure it follows the proper email structure. Additionally, the password must be at least 
                         6 characters long; for example,  '123456'.
                     </div>
