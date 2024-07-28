@@ -28,7 +28,7 @@ export const SearchBar: React.FC = () => {
         />
         <button
             type="submit"
-            className="absolute top-0 right-0 p-2.5 text-sm pl-2 font-medium h-full text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 "
+            className="absolute top-0 right-0 p-2.5 text-sm pl-2 font-medium h-full text-white bg-blue-500 rounded-r-lg hover:bg-blue-800 "
         >
             <svg
                 className="w-4 h-4"

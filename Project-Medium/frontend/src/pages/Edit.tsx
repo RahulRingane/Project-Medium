@@ -28,7 +28,27 @@ export const Edit = () => {
         () => ({
             placeholder: "Start writing content...",
             askBeforePasteHTML: false,
-            askBeforePasteFromWord: false
+            askBeforePasteFromWord: false,
+            buttons: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "eraser",
+                "ul",
+                "ol",
+                "copyformat",
+                "paragraph",
+                "superscript",
+                "subscript",
+                "cut",
+                "copy",
+                "paste",
+                "undo",
+                "redo",
+                "table",
+                "lineHeight",
+              ]
         }),
         []
     );
@@ -63,7 +83,7 @@ export const Edit = () => {
         
         return <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         <strong className="font-bold">Warning!!</strong>
-        <span className="block sm:inline"> You are not authorized to do this. Only the author can edit the blog.</span>
+        <span className="block sm:inline"> Unauthorized action: You are not permitted to do this.</span>
         <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
           <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
         </span>
@@ -101,7 +121,8 @@ export const Edit = () => {
                     <button
                         type="button"
                         onClick={handleSave}
-                        className="rounded text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-base px-5 py-2 text-center me-2 ml-2 mt-2 mb-2"
+                        //className="rounded text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-base px-5 py-2 text-center me-2 ml-2 mt-2 mb-2"
+                        className=" flex justify-center flex-col mt-4 py-1.5  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 "
                     >
                         Save
                     </button>

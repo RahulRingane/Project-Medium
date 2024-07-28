@@ -11,7 +11,7 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
     // Sanitize the HTML content from blog.title and blog.content
     const sanitizedTitle = DOMPurify.sanitize(blog.title);
     const sanitizedContent = DOMPurify.sanitize(blog.content);
-   
+
 
     if (!blog) {
         return <div>Error: Blog data is not available.</div>;
@@ -37,6 +37,13 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
                                    focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 ">Edit</button>
                             </Link>
                         </div>
+                        <div className="flex items-center p-1 mt-2 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300" role="alert">
+                    
+                            <span className="sr-only">Info</span>
+                            <div>
+                                <span className="font-medium">Note : </span> Only the author can edit the blog.
+                            </div>
+                        </div>
                     </div>
 
                     <div className="col-span-12 md:col-span-4 ">
@@ -45,7 +52,7 @@ export const Fullblog = ({ blog }: { blog: Blog }) => {
                         </div>
                         <div className="flex w-full">
                             <div className="pr-4 flex flex-col justify-center">
-                                <Avatar size="big" name={ blog.author?.name || "Anonymous"} />
+                                <Avatar size="big" name={blog.author?.name || "Anonymous"} />
                             </div>
                             <div>
                                 <div className="text-xl font-extrabold">
