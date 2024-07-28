@@ -6,11 +6,11 @@ export const Signup = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
 
             <div>
-            <div className="flex items-center p-1 mt-2 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300" role="alert">
+            <div className="flex items-center p-1 mt-2 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
                     
                     <span className="sr-only">Info</span>
                     <div>
-                        <span className="font-medium px-o.5 bg-grey-100">Note : </span> For signup, please use a dummy email with a valid format, 
+                        <span className="font-medium px-o.5">Note : </span> For signup, please use a dummy email with a valid format, 
                         such as thor@gmail.com, and ensure it follows the proper email structure. Additionally, the password must be at least 
                         6 characters long; for example,  '123456'.
                     </div>
