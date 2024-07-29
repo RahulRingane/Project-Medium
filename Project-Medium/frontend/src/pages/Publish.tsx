@@ -1,12 +1,11 @@
 import { Appbar } from "../components/Appbar"
 import axios from "axios";
-import { useMemo} from 'react'
+import { useMemo } from 'react'
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import JoditEditor from "jodit-react"
 import { useRef } from 'react'
-
 
 declare global {
     interface Window {
@@ -19,7 +18,9 @@ export const Publish = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-    const Config: any = useMemo(
+  
+
+   const Config: any = useMemo(
         () => ({
 
             placeholder: "Start Writing Cotent",
@@ -44,11 +45,10 @@ export const Publish = () => {
                 "redo",
                 "table",
                 "lineHeight",
-              ]
+            ]
         }),
         [])
 
-   
 
     return <div>
         <Appbar />
@@ -79,9 +79,9 @@ export const Publish = () => {
                         }
                     });
                     var newblog = response.data.post
-                    
 
-                 
+
+
                     navigate(`/Updateblogs/${newblog.id}`)
                 }} type="submit" className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                     Publish post

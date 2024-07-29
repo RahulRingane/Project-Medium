@@ -12,8 +12,6 @@ import { blogStateAtom } from '../atom';
 
 
 
-
-
 export const Edit = () => {
     const editor = useRef(null);
     const { id } = useParams<{ id: string }>();
@@ -30,7 +28,7 @@ export const Edit = () => {
             askBeforePasteHTML: false,
             askBeforePasteFromWord: false,
             buttons: [
-                "bold",
+              "bold",
                 "italic",
                 "underline",
                 "strikethrough",
