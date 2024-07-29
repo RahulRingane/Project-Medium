@@ -21,6 +21,12 @@ export const Blog = () => {
     }
   }, [blogLoadable.state]);
 
+  useEffect(() => {
+    // Scroll to top when loading state changes
+    window.scrollTo(0, 0);
+  }, [loading]);
+
+
   if (loading || !blogLoadable.contents) {
     return (
       <div>

@@ -26,26 +26,25 @@ export const Publish = () => {
             placeholder: "Start Writing Cotent",
             askBeforePasteHTML: false,
             askBeforePasteFromWord: false,
+            toolbarAdaptive: false,
+            width: '100%',
             buttons: [
                 "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "eraser",
-                "ul",
-                "ol",
-                "copyformat",
-                "paragraph",
-                "superscript",
-                "subscript",
-                "cut",
-                "copy",
-                "paste",
-                "undo",
-                "redo",
-                "table",
-                "lineHeight",
-            ]
+                  "italic",
+                  "underline",
+                  "ul",
+                  "ol",
+                  "paragraph",
+                  "copy",
+                  "paste",
+                  "undo",
+                  
+                ],
+                style: {
+                    fontSize: '14px',
+                    font: "normal"  
+                }
+              
         }),
         [])
 
@@ -67,7 +66,7 @@ export const Publish = () => {
                     ref={editor}
                     value={description}
                     config={Config}
-                    onChange={(newDescription) => setDescription(newDescription)}
+                    onBlur={(newDescription) => setDescription(newDescription)}
                 />
                 <button onClick={async () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
@@ -83,7 +82,7 @@ export const Publish = () => {
 
 
                     navigate(`/Updateblogs/${newblog.id}`)
-                }} type="submit" className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                }} type="submit" className= "flex justify-center flex-col mt-4 py-2  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 ">
                     Publish post
                 </button>
             </div>

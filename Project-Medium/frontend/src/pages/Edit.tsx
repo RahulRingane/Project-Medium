@@ -27,26 +27,25 @@ export const Edit = () => {
             placeholder: "Start writing content...",
             askBeforePasteHTML: false,
             askBeforePasteFromWord: false,
+            toolbarAdaptive: false,
             buttons: [
               "bold",
                 "italic",
                 "underline",
-                "strikethrough",
-                "eraser",
                 "ul",
                 "ol",
-                "copyformat",
                 "paragraph",
-                "superscript",
-                "subscript",
                 "cut",
                 "copy",
                 "paste",
                 "undo",
                 "redo",
-                "table",
-                "lineHeight",
-              ]
+              ],
+              style: {
+                fontSize: '14px',
+                font: "normal"  
+            }
+            
         }),
         []
     );
@@ -114,7 +113,7 @@ export const Edit = () => {
                         ref={editor}
                         value={content}
                         config={Config}
-                        onChange={(newContent) => setContent(newContent)}
+                        onBlur={(newContent) => setContent(newContent)}
                     />
                     <button
                         type="button"
