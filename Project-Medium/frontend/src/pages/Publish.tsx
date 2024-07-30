@@ -18,7 +18,7 @@ export const Publish = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-  
+    const [disabled, setDisabled] = useState(false);
 
    const Config: any = useMemo(
         () => ({
@@ -47,7 +47,7 @@ export const Publish = () => {
               
         }),
         [])
-
+ 
 
     return <div>
         <Appbar />
@@ -69,6 +69,9 @@ export const Publish = () => {
                     onBlur={(newDescription) => setDescription(newDescription)}
                 />
                 <button onClick={async () => {
+                    if (disabled) return;
+                    setDisabled(true);
+
                     const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
                         title,
                         content: description
@@ -78,12 +81,13 @@ export const Publish = () => {
                         }
                     });
                     var newblog = response.data.post
-
+ 
 
 
                     navigate(`/Updateblogs/${newblog.id}`)
-                }} type="submit" className= "flex justify-center flex-col mt-4 py-2  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 ">
-                    Publish post
+                    
+                }} disabled={disabled} type="submit" className= "flex justify-center flex-col mt-4 py-2  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 ">
+                   publish
                 </button>
             </div>
         </div>
