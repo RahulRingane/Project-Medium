@@ -20,6 +20,7 @@ export const Edit = () => {
     const [title, setTitle] = useState(blog?.title || '');
     const [content, setContent] = useState(blog?.content || '');
     const [authorId] = useState(blog.author?.id || '');
+    const [disabled, setDisabled] = useState(false);
    const userid = localStorage.getItem('userid')
 
     const Config : any = useMemo(
@@ -60,6 +61,8 @@ export const Edit = () => {
 
     const handleSave = async () => {
         try {
+            if (disabled) return;
+            setDisabled(true);
             const updatedBlog = { id, title, content, authorId };
             const response = await axios.put(`${BACKEND_URL}/api/v1/blog/edit/${id}`, updatedBlog, {
                 headers: {
@@ -79,8 +82,8 @@ export const Edit = () => {
      if(userid !== authorId){
         
         return <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong className="font-bold">Note!!</strong>
-        <span className="block sm:inline"> Refresh the page and then try... if problem still persist then it is Unauthorized action, You are not permitted to do this.</span>
+        <strong className="font-bold">Warning!!</strong>
+        <span className="block sm:inline">Unauthorized action...</span>
         <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
           <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
         </span>
@@ -118,7 +121,8 @@ export const Edit = () => {
                     <button
                         type="button"
                         onClick={handleSave}
-                        className=" flex justify-center flex-col mt-4 py-1.5  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 "
+                        disabled={disabled}
+                        className=" flex justify-center flex-col mt-4 py-1.5  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-gray-100 hover:text-blue-700  focus:z-10 "
                     >
                         Save
                     </button>
