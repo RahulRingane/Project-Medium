@@ -20,7 +20,7 @@ export const Publish = () => {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
 
-   const Config: any = useMemo(
+    const Config: any = useMemo(
         () => ({
 
             placeholder: "Start Writing Cotent",
@@ -30,24 +30,24 @@ export const Publish = () => {
             width: '100%',
             buttons: [
                 "bold",
-                  "italic",
-                  "underline",
-                  "ul",
-                  "ol",
-                  "paragraph",
-                  "copy",
-                  "paste",
-                  "undo",
-                  
-                ],
-                style: {
-                    fontSize: '14px',
-                    font: "normal"  
-                }
-              
+                "italic",
+                "underline",
+                "ul",
+                "ol",
+                "paragraph",
+                "copy",
+                "paste",
+                "undo",
+
+            ],
+            style: {
+                fontSize: '14px',
+                font: "normal"
+            }
+
         }),
         [])
- 
+
 
     return <div>
         <Appbar />
@@ -81,14 +81,21 @@ export const Publish = () => {
                         }
                     });
                     var newblog = response.data.post
- 
+
 
 
                     navigate(`/Updateblogs/${newblog.id}`)
-                    
-                }} disabled={disabled} type="submit" className= "flex justify-center flex-col mt-4 py-2  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-blue-700 hover:text-white focus:z-10 ">
-                   publish
+
+                }} disabled={disabled} type="submit" className="flex justify-center flex-col mt-4 py-2  px-3 me-2 text-xs font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-blue-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 ">
+                    Submit
                 </button>
+                <div className="flex items-center p-1 mt-2 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
+
+                    <span className="sr-only">Info</span>
+                    <div>
+                        <span className="font-medium ">Note : </span> After submitting the blog, please wait for a moment as the upload may take some time.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
